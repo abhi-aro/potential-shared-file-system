@@ -5,7 +5,7 @@
 stage: ${env.STAGE}
 custom:
   myStage: ${stage}
-SUGAR-WEBSITE-PROD:
+SUGAR-WEBSITE-TEST:
   component: "@sls-next/serverless-component@3.6.0"
 #region: ap-south-1
   # inputs:
@@ -17,16 +17,6 @@ SUGAR-WEBSITE-PROD:
     build:
       env:
         SLS_STAGE: ${custom.myStage}
-    cloudfront:
-      distributionId: E117JW8EROFF8T
-    memory:
-      defaultLambda: 4096
-      apiLambda: 4096
-      imageLambda: 4096
-    timeout:
-      defaultLambda: 30
-      apiLambda: 30
-      imageLambda: 30
     #   # domain: ["dev", "sugarcosmetics.com"]
 
     domainRedirects:
@@ -34,8 +24,7 @@ SUGAR-WEBSITE-PROD:
       sugarcosmetics.com: https://in.sugarcosmetics.com
   
     bucketRegion: ap-south-1
-    bucketName: sugarwebsite-prod
-  #   # domain: ["dev", "sugarcosmetics.com"]
+    bucketName: sugarwebsite-dev
   #   memory: 1024
   #   # cloudfront:
   #   #   distributionId: E3DWHYSRM7DGDU
