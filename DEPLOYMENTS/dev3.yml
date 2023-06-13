@@ -1,0 +1,42 @@
+# provider:
+#   name: aws
+#   runtime: nodejs14.x
+  # region: ap-south-1
+stage: ${env.STAGE}
+custom:
+  myStage: ${stage}
+SUGAR-WEBSITE-DEV3:
+  component: "@sls-next/serverless-component@3.6.0"
+#region: ap-south-1
+  # inputs:
+  #   domain: ["m.sugarcosmetics.com", "sugarcosmetics.com"]
+  #   cloudfront:
+  #     certificate:
+  #       cloudFrontDefaultCertificate: true # specify false and one of IAM/ACM certificates, or specify true and omit IAM/ACM  
+  inputs:
+    build:
+      env:
+        SLS_STAGE: ${custom.myStage}
+    # cloudfront:
+    #   distributionId: E117JW8EROFF8T
+    memory:
+      defaultLambda: 4096
+      apiLambda: 4096
+      imageLambda: 4096
+    timeout:
+      defaultLambda: 30
+      apiLambda: 30
+      imageLambda: 30
+    #   # domain: ["dev", "sugarcosmetics.com"]
+
+    domainRedirects:
+      www.sugarcosmetics.com: https://in.sugarcosmetics.com
+      sugarcosmetics.com: https://in.sugarcosmetics.com
+  
+    bucketRegion: ap-south-1
+    bucketName: sugar-website-dev3
+  #   # domain: ["dev", "sugarcosmetics.com"]
+  #   memory: 1024
+  #   # cloudfront:
+  #   #   distributionId: E3DWHYSRM7DGDU
+      
